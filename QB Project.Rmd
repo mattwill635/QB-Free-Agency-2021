@@ -1,0 +1,89 @@
+---
+title: "QB Carousel 2021 Project"
+author: "Matt Williams"
+date: "2/01/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+```{r exampleCodeChunk, eval = FALSE, echo = TRUE}
+# Comments are included in each code chunk, simply as prompts
+# install.packages('mclust')
+# install.packages('dplyr')
+# install.packages('ggplot2')
+# install.packages('gghighlight')
+
+```
+
+```{r exampleCodeChunk, eval = FALSE, echo = TRUE}
+### Summary of data to understand the dataset and variables ###
+library(ggplot2)
+library(dplyr)
+library(gghighlight)
+# summary(Team_Records)
+# str(Team_Records)
+aggregate(Team_Records[, 3:14], list(Team_Records$Tm), mean)
+# manualcolors<-c('black','forestgreen', 'red2', 'orange', 'cornflowerblue', 
+ #               'magenta', 'darkolivegreen4', 'indianred1', 'tan4', 'darkblue', #
+#                'mediumorchid1','firebrick4',  'yellowgreen', 'lightsalmon', 'tan3',
+#                "tan1",'darkgray', 'wheat4', '#DDAD4B', 'chartreuse', 
+#                'seagreen1', 'moccasin', 'mediumvioletred', 'seagreen','cadetblue1',
+ #               "darkolivegreen1" ,"tan2" ,   "tomato3" , "#7CE3D8","gainsboro")
+# manualcolors<-c('black','black', 'black', 'black', 'black', 
+#                'black', 'black', 'black', 'black', 'black', 
+ #               'royalblue1','black', 'black', 'black', 'black',
+ #               'black','black','black', 'black', 'black', 
+ #               'black', 'black', 'black', 'black','black',
+ #               'black','black','black' , 'black','black', 'black', 'black')
+# plot(Team_Records$Year, Team_Records$SRS,
+#     xlab="Year",
+#     ylab="SRS",
+#     pch = 19,
+#     col=c(manualcolors),
+ #    main = "Detroit Lions SRS 2009-2020"
+ 
+#)
+#legend("topright",c("ARI","ATL","BAL","BUF","CAR", "CHI","CIN","CLE","DAL","DEN","DET","GB","HOU","IND","JAC","KC","LAC","LAR","LV","MIA","MIN","NE","NO","NYG","NYJ","PHI","PIT","SEA","SF","TB","TEN","WFT"), 
+#       cex =0.25,
+#fill = c(manualcolors), inset = -0.01)
+
+ggplot(Team_Records, aes(Year, SRS)) +
+  geom_point() +
+  gghighlight(Tm == "DET", label_key = category)
+
+ggplot(Team_Records, aes(Year, OSRS)) +
+  geom_point() +
+  gghighlight(Tm == "DET", label_key = category)
+
+ggplot(Team_Records, aes(Year, DSRS)) +
+  geom_point() +
+  gghighlight(Tm == "DET", label_key = category)
+
+```
+
+```{r exampleCodeChunk, eval = FALSE, echo = TRUE}
+ggplot(TR_2017, aes(Year, SRS)) +
+  geom_point() +
+  gghighlight(Tm == "HOU", label_key = category)
+
+ggplot(TR_2017, aes(Year, OSRS)) +
+  geom_point() +
+  gghighlight(Tm == "HOU", label_key = category)
+
+ggplot(TR_2017, aes(Year, DSRS)) +
+  geom_point() +
+  gghighlight(Tm == "HOU", label_key = category)
+
+```
+```{r exampleCodeChunk, eval = FALSE, echo = TRUE}
+
+
+```
